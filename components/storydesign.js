@@ -6,7 +6,13 @@ import artboard from '../Images/artboard.png';
 
 const StoryDesign = ({ children }) => {
   const target = useRef(null);
-  return <></>;
+  return (
+    <>
+      <div>
+        <h1>Hello</h1>
+      </div>
+    </>
+  );
 };
 
 export default StoryDesign;
