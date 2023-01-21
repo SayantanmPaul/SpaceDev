@@ -20,6 +20,9 @@ export default function App() {
             <MainContent />
           </div>
           <div className="flex justify-center">
+            <div className=" lg:h-full lg:w-[1px] lg:bg-slate-300"></div>
+          </div>
+          <div className="flex justify-center">
             <FilterContent />
           </div>
         </div>
