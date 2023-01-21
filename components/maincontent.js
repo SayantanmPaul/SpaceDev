@@ -39,11 +39,13 @@ const MainContent = () => {
                     <span className="my-2 text-[.8rem] flex ">
                       September 13 ·
                     </span>
-                    <span className="my-2 text-[.8rem] flex ">
+                    <span className="my-2 text-[.8rem] flex pl-1 ">
                       4 min read ·
                     </span>
-                    <span className="bg-[#ececec] px-[7px] py-1 lg:ml-[10px] md:ml-3 lg:flex text-[.8rem] md:block hidden rounded-full ">
-                      development
+                    <span className=" mt-1 ml-1">
+                      <button className="text-sm bg-slate-100 hover:bg-slate-200 py-1 px-2 rounded-full">
+                        development
+                      </button>
                     </span>
                   </div>
                   <span className="cursor-pointer pr-5 ml-[100px]">

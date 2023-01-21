@@ -6,13 +6,7 @@ import artboard from '../Images/artboard.png';
 
 const StoryDesign = ({ children }) => {
   const target = useRef(null);
-  return (
-    <>
-      <div className="text-sm">
-        <h1>Hello</h1>
-      </div>
-    </>
-  );
+  return <></>;
 };
 
 export default StoryDesign;

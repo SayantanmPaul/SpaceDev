@@ -15,7 +15,6 @@ export default function App() {
         <div className="flex lg:flex-row justify-center flex-col-reverse lg:p-1  ">
           <div className="flex flex-col sm:grid-cols-2 md:p-6 lg:grid-col ">
             <MainContent />
-
             <MainContent />
             <MainContent />
             <MainContent />
