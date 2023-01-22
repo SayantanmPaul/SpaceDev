@@ -13,7 +13,7 @@ export default function App() {
           <Navbar />
         </div>
         <div className="flex lg:flex-row justify-center flex-col-reverse lg:p-1  ">
-          <div className="flex flex-col sm:grid-cols-2 md:p-6 lg:grid-col ">
+          <div className="flex flex-col sm:grid-cols-2 md:px-14 md:py-2 p lg:grid-col ">
             <MainContent />
             <MainContent />
             <MainContent />

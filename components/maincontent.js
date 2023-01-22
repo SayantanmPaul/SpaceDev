@@ -7,8 +7,8 @@ import Link from 'next/link';
 const MainContent = () => {
   return (
     <>
-      <div className="flex justify-center gap-10 p-5">
-        <div className="flex justify-between lg:px-7">
+      <div className="flex justify-center py-5">
+        <div className="flex justify-between ">
           <div className="flex lg:justify-start md:justify-center">
             <div className="wrapper flex lg:max-w-[45rem]  items-center gap-[22px]">
               <div className="postdetail flex-[2.5] flex flex-col">

@@ -4,8 +4,8 @@ import Logo from '../Images/SpaceDev.svg';
 const Navbar = () => {
   return (
     <div className="flex justify-center gap-10 p-5 md:p-6 ">
-      <div className="max-w-7xl flex-1 flex justify-between gap-10">
-        <div className="flex items-center flex-start lg:pl-[4%] ">
+      <div className="max-w-[1180px] flex-1 flex justify-between gap-10">
+        <div className="flex items-center flex-start ">
           <Image
             className=" cursor-pointer object-contain"
             src={Logo}
