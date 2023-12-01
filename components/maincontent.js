@@ -3,68 +3,75 @@ import InitialImage from '../Images/unsplash1.jpg';
 import Author from '../Images/author.jpg';
 import { BsBookmarkPlus } from 'react-icons/bs';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 const MainContent = () => {
+
+  const [fontSize, setfontSize]=useState('18px')
+  useEffect(()=>{
+    const responsiveScreen=()=>{
+      if(window.innerWidth<600){
+        setfontSize('15px')
+      }else setfontSize('18px')
+    }
+
+    responsiveScreen();
+    window.addEventListener("resize", () => responsiveScreen());
+  })
+
+  function MaxText({text, maxLength}){
+    const words = text.split(' ');
+
+    if(words.length > maxLength){
+      text = words.slice(0, maxLength).join(' ') + ' ...';
+    }
+    return <p style={{ fontFamily: 'sans-serif', fontWeight: 'bold', fontSize: fontSize}}>{text}</p>
+    }
+
+<MaxText text='What I Wish Wed Done at the First Sign Mom Was Losing Her Memory blah blah' maxLength={20}/>
+
   return (
     <>
-      <div className="flex justify-center py-5">
-        <div className="flex justify-between ">
-          <div className="flex lg:justify-start md:justify-center">
-            <div className="wrapper flex lg:max-w-[45rem]  items-center gap-[22px]">
-              <div className="postdetail flex-[2.5] flex flex-col">
-                <div className="flex">
-                  <div className="grid plaxe-items-center rounded-full overflow-hidden h-[1.4rem] w-[1.4rem]">
-                    <Image
-                      src={Author}
-                      alt="authoimage"
-                      style={{ width: '30px', height: '23px' }}
-                    />
-                  </div>
-                  <div className="authorname pl-[5px] pb-1 font-semibold text-[#2e2e2e] text-sm">
-                    Wednesday Adams
-                  </div>
-                </div>
-                <Link href={'/AuthorPost/123'}>
-                  <h1 className="font-[770] lg:text-[22px] text-[17px]  text-[#292929] leading-7 font-poppins heading">
-                    You should have these extentions in your vs code 2023
-                  </h1>
-                </Link>
-                <div className="text-[#696969] hidden lg:block md:block heading">
-                  So you want to make your boring vscode giveing your more
-                  productivity, Don't worry I gotcha!
-                </div>
-
-                <div className="flex items-center flex-row  text-[#787878] ">
-                  <div className="flex justify ">
-                    <span className="my-2 text-[.8rem] flex ">
-                      September 13 ·
-                    </span>
-                    <span className="my-2 text-[.8rem] flex pl-1 ">
-                      4 min read ·
-                    </span>
-                    <span className=" mt-1 ml-1">
-                      <button className="text-sm bg-slate-100 hover:bg-slate-200 py-1 px-2 rounded-full">
-                        development
-                      </button>
-                    </span>
-                  </div>
-                  <span className="cursor-pointer pr-5 ml-[100px]">
-                    <BsBookmarkPlus size={20} />
-                  </span>
-                </div>
-              </div>
-              <div className="">
-                <Image
-                  height={220}
-                  width={220}
-                  className="rounded-lg bg-auto "
-                  src={InitialImage}
-                  alt="headingimage"
-                />
-              </div>
-            </div>
+      <div className=' flex flex-row'>
+      <div className=' flex flex-col lg:max-w-[475px] max-w-[500px] mx-auto'>
+        <div className=' flex flex-row items-center gap-2'>
+          <div className=' w-[20px] h-[20px] rounded-full overflow-hidden'>
+            <Image 
+              src={Author}
+              alt="user"
+              width={100}
+              height={100}
+              />
+          </div>
+          <div>
+            <p className=' text-[12px] lg:text-[14px] font-semibold'>Cameron Kruse</p>
           </div>
         </div>
+        <div>
+          <MaxText text='What I Wish We do Done at the First Sign Mom Was Losing Her Memory blah blah' maxLength={13}/>
+          <p className=' font-sans text-[16px] text-slate-500 hidden lg:block md:block'>Today the Plotline, the food climate and data community organized by Earth Genome, is launching Food Twin, a proof of concept</p>  
+        </div>
+        <div className=' flex flex-row justify-between items-center'>
+          <div className=' flex flex-row items-center text-[#757575] lg:text-[14px] text-xs gap-2 py-1'>
+            <p>Nov 10 </p>.
+            <p>8 min read </p>.
+            <p className=' bg-slate-200 px-2 py-1 rounded-full hidden lg:block md:block'>topic name</p>
+          </div>
+          <div className='px-4'>
+            <BsBookmarkPlus size={16} color='#757575'/>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div className='w-[220px] overflow-hidden rounded-md flex items-center'>
+        <Image 
+          src={InitialImage}
+          alt='main image'
+          width={300}
+          height={200}
+          />
+      </div>
       </div>
     </>
   );
