@@ -7,23 +7,22 @@ import FilterContent from '../components/filtercontent';
 export default function App() {
   return (
     <>
-      <div>
+      <div className=' flex flex-col gap-3'>
         <StoryDesign />
-        <div>
+        <div className=' p-4 px-6 md:px-14'>
           <Navbar />
         </div>
-        <div className="flex lg:flex-row justify-center flex-col-reverse lg:p-1  ">
-          <div className="flex flex-col sm:grid-cols-2 md:px-14 md:py-2 p lg:grid-col ">
+        <div className="flex lg:flex-row justify-center flex-col-reverse lg:p-1 gap-3">
+          <div className="flex flex-col p-2  px-6 md:px-14">
             <MainContent />
             <MainContent />
             <MainContent />
             <MainContent />
           </div>
-          <div className="flex justify-center">
-            <div className=" lg:h-full lg:w-[1px] lg:bg-slate-300"></div>
-          </div>
-          <div className="flex justify-center">
+          <div>
+          <div className=" p-2 px-6 md:px-14 ">
             <FilterContent />
+          </div>
           </div>
         </div>
       </div>
