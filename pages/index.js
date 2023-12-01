@@ -9,7 +9,7 @@ export default function App() {
     <>
       <div>
         <StoryDesign />
-        <div className="md:px-6">
+        <div>
           <Navbar />
         </div>
         <div className="flex lg:flex-row justify-center flex-col-reverse lg:p-1  ">
