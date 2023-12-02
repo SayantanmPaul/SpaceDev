@@ -30,6 +30,7 @@ const MainContent = () => {
     }
   return (
     <>
+    <Link href={`/AuthorPost/123`} as={`/AuthorPost/123`}>
       <div className=' flex flex-row'>
       <div className=' flex flex-col lg:max-w-[475px] max-w-[500px] mx-auto'>
         <div className=' flex flex-row items-center gap-2'>
@@ -72,6 +73,7 @@ const MainContent = () => {
           />
       </div>
       </div>
+    </Link>
     </>
   );
 };
