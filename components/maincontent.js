@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 const MainContent = () => {
-
+  // font size limit for different screen size 
   const [fontSize, setfontSize]=useState('18px')
   useEffect(()=>{
     const responsiveScreen=()=>{
@@ -19,6 +19,7 @@ const MainContent = () => {
     window.addEventListener("resize", () => responsiveScreen());
   })
 
+  // font size limit
   function MaxText({text, maxLength}){
     const words = text.split(' ');
 
@@ -27,9 +28,6 @@ const MainContent = () => {
     }
     return <p style={{ fontFamily: 'sans-serif', fontWeight: 'bold', fontSize: fontSize}}>{text}</p>
     }
-
-<MaxText text='What I Wish Wed Done at the First Sign Mom Was Losing Her Memory blah blah' maxLength={20}/>
-
   return (
     <>
       <div className=' flex flex-row'>
@@ -70,6 +68,7 @@ const MainContent = () => {
           alt='main image'
           width={300}
           height={200}
+          priority
           />
       </div>
       </div>
