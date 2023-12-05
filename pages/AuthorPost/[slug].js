@@ -1,6 +1,7 @@
 import ArticleMainComp from "../../mainpage/articlemain";
 import ReactionsComp from "../../mainpage/reactions";
 import ReadArticleNav from "../../mainpage/readArticleNav";
+import SimilarPostComp from "../../mainpage/similarpost";
 
 export default function AuthorPostPage(){
 
@@ -23,12 +24,17 @@ export default function AuthorPostPage(){
       <div className=" my-2">
         <div className=' w-full h-[1px] bg-slate-200 block'></div>
       </div>
-      <div className=" py-4 ">
+      <div className=" ">
       <ArticleMainComp/>
+      <div className="sticky bottom-0 bg-white pt-4 pb-2 ">
+        <ReactionsComp/>
       </div>
-        <div className="sticky bottom-0 bg-white py-3 ">
-          <ReactionsComp/>
+      </div>
+      <div className=" max-w-[680px] mx-auto">
+        <div className=' w-full h-[1px] bg-slate-200 my-4'></div>
+        <SimilarPostComp/> 
         </div>
-    </div>
+      </div>
+    
   )
 }
