@@ -10,7 +10,7 @@ const Navbar = () => {
           src={Logo}
           alt='spacedev'
           width={200}
-          height={50}
+          height='auto'
           />
         </div>
          <div className=' flex gap-4 flex-row'>
