@@ -8,6 +8,7 @@ const DevProvider=({children})=>{
     const [users, setUsers]= useState([])
     const [posts, setPosts]= useState([])
 
+    //get user data from this useEffect
     useEffect(()=>{
         const getUser=async()=>{
             const Data= await getDocs(collection(db, 'user'))
@@ -25,6 +26,8 @@ const DevProvider=({children})=>{
         }
         getUser()
     }, [])
+
+    //get blog Post data from this useEffect
     
     return(
         <SpacedevContext.Provider value={{posts, users}}>
