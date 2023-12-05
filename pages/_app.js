@@ -1,6 +1,6 @@
 import '../styles/globals.css';
-import { ParallaxProvider } from 'react-scroll-parallax';
 import Head from 'next/head';
+import { DevProvider } from '../context/context';
 
 export default function App({ Component, pageProps }) {
   return (
@@ -8,9 +8,9 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>SpaceDev.</title>
       </Head>
-      <ParallaxProvider scrollAxis="horizontal">
-        <Component {...pageProps} />
-      </ParallaxProvider>
+        <DevProvider>
+            <Component {...pageProps} />
+        </DevProvider>
     </>
   );
 }
