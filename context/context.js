@@ -27,6 +27,32 @@ const DevProvider=({children})=>{
         getUser()
     }, [])
 
+    useEffect(()=>{
+        const getPosts=async()=>{
+            const Data= await getDocs(collection(db, 'blogs'))
+    
+            setPosts(
+                Data.docs.map(doc=> {
+                    return{
+                        id: doc.id,
+                        data: {
+                            body: doc.data().body,
+                            brief: doc.data().brief,
+                            bannerImage: doc.data().bannerImage,
+                            catagorypost: doc.data().topic,
+                            postLength: doc.data().postLength,
+                            datePosted: doc.data().datePosted,
+                            title: doc.data().title,
+                            author: doc.data().author,
+                            likes: doc.data().likeCount,
+                        }
+                    }
+                })
+            )
+        }
+        getPosts()
+    }, [])
+
     //get blog Post data from this useEffect
     
     return(
