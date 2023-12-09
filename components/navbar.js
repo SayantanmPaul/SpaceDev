@@ -11,6 +11,7 @@ const Navbar = () => {
           alt='spacedev'
           width={200}
           height='auto'
+          priority
           />
         </div>
          <div className=' flex gap-4 flex-row'>
