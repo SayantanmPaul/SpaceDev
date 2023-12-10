@@ -16,28 +16,32 @@ const tempData={
 
 
 
-const ArticleMainComp = () => {
+const ArticleMainComp = ({post, author}) => {
+  console.log(post,author);
   return (
     <div  className=' flex justify-center'>
         <div style={{maxWidth: '680px'}} className=''>
           <div className=' flex flex-col items-start gap-6'>
 
             {/* content heading */}
-            <h1 className=' text-[32px] font-sans lg:text-[40px] leading-10 tracking-tight lg:leading-snug font-bold'>{tempData.title}
+            <h1 className=' text-[32px] font-sans lg:text-[40px] leading-10 tracking-tight lg:leading-snug font-bold'>{post?.data?.title}
             </h1>
 
             {/* author details */}
             <div className=' flex flex-row w-full justify-between items-center relative'>
               <div className=' flex flex-row gap-3 items-center'>
                 <div className=' w-10 h-10 overflow-hidden rounded-full '>
-                  <Image src={Author} alt='author' width={200} height={200}/>
+                  <Image src={author?.data?.imgurl} alt='author' width={200} height={200}/>
                 </div>
                 <div className=' '>
-                  <p className=' text-base font-semibold cursor-pointer hover:underline'>{tempData.author}</p>
+                  <p className=' text-base font-semibold cursor-pointer hover:underline'>{author?.data?.name}</p>
                   <div className=' flex flex-row items-center gap-2 text-[#757575]'>
-                    <p className=' text-sm'>9 min read</p>
+                    <p className=' text-sm'>{post?.data?.postLength} min read</p>
                     <FiClock size={12}/>
-                    <p className=' text-sm'> Nov 21</p>
+                    <p className=' text-sm'>{new Date().toLocaleString('en-US',{
+                      day: 'numeric',
+                      month: 'short'
+                    })}</p>
                   </div>
                 </div>
               </div>
@@ -48,16 +52,20 @@ const ArticleMainComp = () => {
             <div className=' w-full h-[1px] bg-slate-200 '></div>
             <div className=' flex flex-col gap-10 '>
               <div className=' w-full h-auto'>
-                <Image src={titleImage} alt='authorImage' width='auto' height='auto' className=' w-full h-auto'/>
+                <Image 
+                src={post?.data?.bannerImage} 
+                alt='authorImage' 
+                width={400} 
+                height={400} 
+                className=' w-full lg:max-h-[560px] md:max-h-[560px] max-h-[360px] object-cover'
+                priority
+                />
               </div>
 
               <div>
-                <p className=' text-lg leading-relaxed font-newsletter'>{tempData.maincontent}</p>
+                <p className=' text-lg leading-relaxed font-newsletter'>{post?.data?.body}</p>
                 <br/>
-                <p className=' text-lg leading-relaxed font-newsletter'>{tempData.maincontent}</p>
-
-                <br/>
-                <p className='  text-lg font-medium italic leading-relaxed font-newsletter'>Written by {tempData.author} .</p>
+                <p className='  text-lg font-medium italic leading-relaxed font-newsletter'>Written by {author?.data?.name} .</p>
               </div>
 
               

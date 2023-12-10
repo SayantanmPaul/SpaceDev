@@ -1,11 +1,33 @@
+import {  useContext, useEffect, useState } from "react";
 import ArticleMainComp from "../../mainpage/articlemain";
 import ReactionsComp from "../../mainpage/reactions";
 import ReadArticleNav from "../../mainpage/readArticleNav";
 import SimilarPostComp from "../../mainpage/similarpost";
+import { SpacedevContext } from "../../context/context";
+import { useRouter } from "next/router";
 
 export default function AuthorPostPage(){
-
   const state=true
+
+  const {posts, users}=useContext(SpacedevContext)
+  const router=useRouter();
+  const[post, setPost]=useState([])
+  const[author, setAuthor]=useState([])
+
+  useEffect(()=>{
+    if(posts.length===0) return
+    //get the post id from the firebase 
+    setPost(
+      posts.find(post=>post.id===router.query.slug)
+    )
+
+    setAuthor(
+      (users.find(user=>user.id===post.data?.author))
+    );
+
+  },[post, posts, users,router.query.slug ])
+
+
   return(
     <div className=" py-2 lg:max-w-[1192px] md:max-w-[696px] max-w-[90%] mx-auto left-0 right-0 justify-center absolute">
       {/* if user havent log in show this section */}
@@ -25,9 +47,9 @@ export default function AuthorPostPage(){
         <div className=' w-full h-[1px] bg-slate-200 block'></div>
       </div>
       <div className=" ">
-      <ArticleMainComp/>
+      <ArticleMainComp post={post } author={author}/>
       <div className="sticky bottom-0 bg-white pt-4 pb-2 ">
-        <ReactionsComp/>
+        <ReactionsComp post={post}/>
       </div>
       </div>
       <div className=" max-w-[680px] mx-auto">

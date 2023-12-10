@@ -26,9 +26,9 @@ const MainContent = ({post}) => {
     const words = text.split(' ');
 
     if(words.length > maxLength){
-      text = words.slice(0, maxLength).join(' ') + ' ...';
+      text = words.slice(0, maxLength).join(' ') + '...';
     }
-    return <p style={{ fontFamily: 'sans-serif', fontWeight: 'bold', fontSize: fontSize}}>{post.data.title}</p>
+    return <p style={{ fontFamily: 'sans-serif', fontWeight: 'bold', fontSize: fontSize}}>{text}</p>
   }
 
   //get the user data via email id and access the specific blog via the email id and set to authorData
@@ -62,12 +62,12 @@ return (
           </div>
         </div>
         <div className=''>
-          <MaxText text='What I Wish We do Done at the First Sign Mom Was Losing Her Memory blah blah' maxLength={13}/>
+          <MaxText text={post.data.title} maxLength={15}/>
           <p className=' font-sans text-[16px] text-slate-500 hidden lg:block md:block'>{post.data.brief}</p>  
         </div>
         <div className=' flex flex-row justify-between items-center'>
           <div className=' flex flex-row items-center text-[#757575] lg:text-[14px] text-xs lg:gap-2 gap-1 py-1'>
-            <p>{new Date().toLocaleString('en-US', {
+            <p>{new Date(post?.data?.datePosted || '').toLocaleString('en-US', {
               day: 'numeric',
               month: 'short'
               })}
