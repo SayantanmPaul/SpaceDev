@@ -11,8 +11,8 @@ const DevProvider=({children})=>{
     //get user data from this useEffect
     useEffect(()=>{
         const getUser=async()=>{
-            const Data= await getDocs(collection(db, 'user'))
-    
+            const Data= await getDocs(collection(db, 'users'))
+            
             setUsers(
                 Data.docs.map(doc=> {
                     return{
