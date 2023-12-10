@@ -29,7 +29,7 @@ const ReactionsComp = ({post}) => {
         </div>
         <IoShareOutline size={26} color='#757575'className=' lg:w-12 w-6 mx-4 cursor-pointer'/>
 
-        <div onClick={savepostClicked} className=' flex flex-row items-center gap-2 lg:gap-0 lg:mx-4'>
+        <div onClick={savepostClicked} className=' flex flex-row items-center gap-2 lg:gap-0 mx-4'>
           {saved ? 
           <BsBookmarkCheckFill size={22}  className=' lg:w-12 text-indigo-500 w-6 cursor-pointer'/> : 
           <BsBookmarkPlus size={22}  className=' lg:w-12 w-6 text-slate-500 cursor-pointer'/>

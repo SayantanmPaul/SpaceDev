@@ -17,26 +17,28 @@ const tempData={
 
 
 const ArticleMainComp = ({post, author}) => {
-  console.log(post,author);
+
   return (
     <div  className=' flex justify-center'>
         <div style={{maxWidth: '680px'}} className=''>
           <div className=' flex flex-col items-start gap-6'>
 
             {/* content heading */}
+            {post?.data?.title?
             <h1 className=' text-[32px] font-sans lg:text-[40px] leading-10 tracking-tight lg:leading-snug font-bold'>{post?.data?.title}
-            </h1>
+            </h1>:<h1 className='text-[32px] font-sans lg:text-[40px] leading-10 tracking-tight lg:leading-snug mx-auto animate-pulse bg-gray-100 rounded-md dark:bg-gray-300 lg:w-[680px] w-[380px] h-6'></h1>}
+           
 
             {/* author details */}
             <div className=' flex flex-row w-full justify-between items-center relative'>
               <div className=' flex flex-row gap-3 items-center'>
                 <div className=' w-10 h-10 overflow-hidden rounded-full '>
-                  <Image src={author?.data?.imgurl} alt='author' width={200} height={200}/>
+                  <Image src={author?.data?.imgurl || `https://images.unsplash.com/photo-1618278942403-e973260cc425?q=80&w=3348&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`} alt='author' width={350} height={200}/>
                 </div>
                 <div className=' '>
-                  <p className=' text-base font-semibold cursor-pointer hover:underline'>{author?.data?.name}</p>
+                  <p className=' text-base font-semibold cursor-pointer hover:underline'>{author?.data?.name ||tempData.author}</p>
                   <div className=' flex flex-row items-center gap-2 text-[#757575]'>
-                    <p className=' text-sm'>{post?.data?.postLength} min read</p>
+                    <p className=' text-sm'>{post?.data?.postLength || 10} min read</p>
                     <FiClock size={12}/>
                     <p className=' text-sm'>{new Date().toLocaleString('en-US',{
                       day: 'numeric',
@@ -53,7 +55,7 @@ const ArticleMainComp = ({post, author}) => {
             <div className=' flex flex-col gap-10 '>
               <div className=' w-full h-auto'>
                 <Image 
-                src={post?.data?.bannerImage} 
+                src={post?.data?.bannerImage || `https://i.pinimg.com/originals/5d/35/e3/5d35e39988e3a183bdc3a9d2570d20a9.gif`} 
                 alt='authorImage' 
                 width={400} 
                 height={400} 
