@@ -1,7 +1,11 @@
 import Image from 'next/image';
 import Logo from '../Images/SpaceDev.svg';
-
+import SignInModel from './signinmodel';
+import { useState } from 'react';
 const Navbar = () => {
+  const [model, showModel]= useState(false)
+
+  const closeModel=()=> showModel(false)
   return (
     <div>
       <div className='flex flex-row justify-between items-center mx-auto'>
@@ -15,10 +19,13 @@ const Navbar = () => {
           />
         </div>
          <div className=' flex gap-4 flex-row'>
-            <button className=' hidden lg:block md:block cursor-pointer hover:underline text-sm '>
+            <button onClick={()=> showModel(true)} className=' hidden lg:block md:block cursor-pointer hover:underline text-sm '>
               Sign in
             </button>
-            <button className=' bg-black text-white px-4 py-3 rounded-full text-sm hover:scale-105 duration-500 cursor-pointer'>
+            <div className=' absolute'>
+            {model && <SignInModel closemodel={closeModel}/>}   
+            </div> 
+            <button onClick={()=> showModel(true)} className=' bg-black text-white px-4 py-3 rounded-full text-sm duration-500 cursor-pointer'>
               Get Started
             </button>
          </div>
