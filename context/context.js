@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState} from "react";
 import { collection, setDoc,getDocs, doc } from "firebase/firestore";
-import { db } from "../firebase";
+import { db, provider,auth } from "../firebase";
+import { signInWithPopup } from "firebase/auth";
 
 const SpacedevContext=createContext()
 
@@ -27,6 +28,7 @@ const DevProvider=({children})=>{
         getUser()
     }, [])
 
+    //get blog Post data from this useEffect
     useEffect(()=>{
         const getPosts=async()=>{
             const Data= await getDocs(collection(db, 'blogs'))
@@ -52,11 +54,16 @@ const DevProvider=({children})=>{
         }
         getPosts()
     }, [])
+    //firebase authentication
+    const HandleUserAuth= async()=>{
+        const userData= await signInWithPopup(auth,provider)
+        const user=userData.user
+        console.log(user, 'okey');
+    }
 
-    //get blog Post data from this useEffect
     
     return(
-        <SpacedevContext.Provider value={{posts, users}}>
+        <SpacedevContext.Provider value={{posts, users, HandleUserAuth}}>
             {children}
         </SpacedevContext.Provider>
     )

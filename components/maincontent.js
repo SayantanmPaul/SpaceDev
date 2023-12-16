@@ -8,7 +8,7 @@ import { getDoc, doc} from 'firebase/firestore';
 import { db } from '../firebase';
 
 const MainContent = ({post}) => {
-  // font size limit for different screen size 
+  //if font size limit for different screen size 
   const [fontSize, setfontSize]=useState('18px')
   useEffect(()=>{
     const responsiveScreen=()=>{

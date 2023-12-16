@@ -3,6 +3,7 @@ import Logo from '../Images/SpaceDev.svg';
 import SignInModel from './signinmodel';
 import { useState } from 'react';
 const Navbar = () => {
+  //sign in model
   const [model, showModel]= useState(false)
 
   const closeModel=()=> showModel(false)

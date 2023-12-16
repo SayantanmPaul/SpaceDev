@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import SideImage from '../Images/C.jpg'
 import SpaceDev from '../Images/SpaceDev.svg'
 import Image from 'next/image'
 import Traveller from '../Images/traveller.png'
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
+import { SpacedevContext } from '../context/context'
 
 const SignInModel = ({closemodel}) => {
+
+    const {HandleUserAuth}=useContext(SpacedevContext)
     //scroll hidden
     useEffect(()=>{
         document.body.style.overflowY="hidden";
@@ -26,7 +29,7 @@ const SignInModel = ({closemodel}) => {
                 <p className=' font-newsletter'>A space for devlopers and inspired engineers</p>
                 <br className=' hidden lg:block'/>
                 <br className=' hidden lg:block'/>
-                <button className=' bg-slate-100 hover:bg-slate-200 duration-300 text-black font-medium rounded-lg p-2 text-sm min-w-[240px] lg:min-w-[340px] flex flex-row items-center justify-center gap-2'><FcGoogle size={22}/> Sign in with Google </button>  
+                <button onClick={HandleUserAuth} className=' bg-slate-100 hover:bg-slate-200 duration-300 text-black font-medium rounded-lg p-2 text-sm min-w-[240px] lg:min-w-[340px] flex flex-row items-center justify-center gap-2'><FcGoogle size={22}/> Sign in with Google </button>  
             </div>  
         
         </div>
