@@ -9,6 +9,7 @@ const DevProvider=({children})=>{
     const [users, setUsers]= useState([])
     const [posts, setPosts]= useState([])
 
+    const [CurrentUser,setCurrentUser]=useState(null)
     //get user data from this useEffect
     useEffect(()=>{
         const getUser=async()=>{
@@ -54,16 +55,27 @@ const DevProvider=({children})=>{
         }
         getPosts()
     }, [])
+
+    //fireStore userData Update
+    const AddAuthortoFireStore=async user=>{
+        await setDoc(doc(db, 'users', user.email),{
+            email: user.email,
+            name: user.displayName,
+            imageURl:user.photoURL,
+            followerCount: 0
+        })
+    }
+
     //firebase authentication
     const HandleUserAuth= async()=>{
         const userData= await signInWithPopup(auth,provider)
         const user=userData.user
-        console.log(user, 'okey');
+        setCurrentUser(user)
+        AddAuthortoFireStore(user)
     }
 
-    
     return(
-        <SpacedevContext.Provider value={{posts, users, HandleUserAuth}}>
+        <SpacedevContext.Provider value={{posts, users, HandleUserAuth, CurrentUser}}>
             {children}
         </SpacedevContext.Provider>
     )
