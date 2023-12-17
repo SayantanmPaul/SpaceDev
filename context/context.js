@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState} from "react";
 import { collection, setDoc,getDocs, doc } from "firebase/firestore";
 import { db, provider,auth } from "../firebase";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithPopup, signOut } from "firebase/auth";
 
 const SpacedevContext=createContext()
 
@@ -68,14 +68,28 @@ const DevProvider=({children})=>{
 
     //firebase authentication
     const HandleUserAuth= async()=>{
-        const userData= await signInWithPopup(auth,provider)
-        const user=userData.user
-        setCurrentUser(user)
-        AddAuthortoFireStore(user)
+        try {
+            const userData=await signInWithPopup(auth,provider)
+            const user=userData.user
+            setCurrentUser(user)
+            AddAuthortoFireStore(user)
+        } catch (error) {
+            alert("signin initiated but cancelled by the user");
+        }
+        
+    }
+    //firebase logout
+    const HandleUserLogout=async()=>{
+        try {
+            await signOut(auth)
+            alert("successfully logged out");
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return(
-        <SpacedevContext.Provider value={{posts, users, HandleUserAuth, CurrentUser}}>
+        <SpacedevContext.Provider value={{posts, users, HandleUserAuth, HandleUserLogout, CurrentUser}}>
             {children}
         </SpacedevContext.Provider>
     )
