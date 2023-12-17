@@ -5,14 +5,19 @@ import SignInModel from './signinmodel';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { SpacedevContext } from '../context/context';
+import UserMenuDropdown from './usermenudropdown';
 const Navbar = () => {
   //sign in model
   const [model, showModel]= useState(false)
 
   const closeModel=()=> showModel(false)
 
+  //getting currrent loged in user data
   const {CurrentUser}=useContext(SpacedevContext)
-  console.log(CurrentUser);
+  
+  const[Dropdown, setDropdown]=useState(false)
+
+  //user image
   const userImage=CurrentUser? CurrentUser.photoURL: null;
   return (
     <div>
@@ -29,15 +34,15 @@ const Navbar = () => {
          <div className=' flex lg:gap-4 gap-2 flex-row'>
           {CurrentUser? (
             <>
-            <button className=' bg-black text-white px-3 py-2 rounded-full text-sm duration-500 cursor-pointer flex flex-row items-center gap-1 font-medium'>Write 
+            <button className=' bg-black text-white px-4 py-2 rounded-full text-sm duration-500 cursor-pointer flex flex-row items-center gap-1 font-medium'>Write 
               <RiBallPenLine className=' text-white' size={20}/>
             </button>
-            <button className='cursor-pointer'>
+            <button onClick={()=> setDropdown((prev)=>!prev)} className='cursor-pointer'>
               <div className=' border hover:border-indigo-500 duration-300 p-[2px] rounded-full overflow-hidden'>
               <Image src={userImage} alt='user' width={200} height={200} className=' object-fill rounded-full overflow-hidden lg:w-10 w-8 h-auto'/>
               </div>
             </button>
-            
+            {Dropdown && (<UserMenuDropdown />)}
             </>
           ):(
             <>
