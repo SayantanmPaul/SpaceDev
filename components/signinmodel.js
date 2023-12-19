@@ -33,7 +33,7 @@ const SignInModel = ({closemodel}) => {
             </div>  
         
         </div>
-        <Image src={Traveller} alt='travveler' width={400} height={400} className=' absolute bottom-0 -right-60 -z-10 w-[800px]'/>
+        <Image src={Traveller} alt='travveler' width={400} height={400} className=' absolute bottom-0 -right-60 w-[800px]'/>
     </div>
   )
 }

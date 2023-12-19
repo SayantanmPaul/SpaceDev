@@ -88,7 +88,8 @@ return (
             width={300}
             height={200}
             priority
-            className=' object-cover w-48 lg:h-36 md:h-36 h-28 scale-100 hover:scale-105  duration-500'
+            
+            className=' object-cover w-48 lg:h-36 md:h-36 h-28 duration-500'
             />
         </div>
       </div>
