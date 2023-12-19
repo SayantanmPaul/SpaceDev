@@ -82,6 +82,7 @@ const DevProvider=({children})=>{
     const HandleUserLogout=async()=>{
         try {
             await signOut(auth)
+            setCurrentUser(null)
             alert("successfully logged out");
         } catch (error) {
             console.log(error);
