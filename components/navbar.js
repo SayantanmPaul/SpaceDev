@@ -9,8 +9,12 @@ import UserMenuDropdown from './usermenudropdown';
 import Modal from 'react-modal'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import WriteBlogModal from './writeblog';
 
+//modal predefined text
 Modal.setAppElement('#__next')
+
+//css for modal background area
 const customStyles={
   content: {
     top: '50%',
@@ -56,7 +60,8 @@ const Navbar = () => {
           {CurrentUser? (
             <>
             <div className=' flex flex-row gap-2 items-center'>
-            <Link href={'/?createNew=1'}>
+              {/* the ?createNew=1 will return a Boolean weather true or false */}
+            <Link href={'/?createNew=1'}> 
               <button className=' bg-black text-white px-4 py-3 rounded-full text-sm duration-500 cursor-pointer flex flex-row items-center gap-1 font-medium'>Write 
                 <RiBallPenLine className=' text-white' size={20}/>
               </button>
@@ -67,6 +72,8 @@ const Navbar = () => {
               </div>
             </button>
             </div>
+
+            {/* user menu dropdown */}
             {Dropdown && (<UserMenuDropdown />)}
             </>
           ):(
@@ -85,9 +92,15 @@ const Navbar = () => {
          </div>
       </div>
         <div className=' bg-slate-300 h-[1px] w-full mt-3'></div>
-        <Modal isOpen={Boolean(router.query.createNew)} onRequestClose={()=>console.log('okey')} style={customStyles} className=''>
+
+        {/* write blog modal */}
+        <Modal 
+          isOpen={Boolean(router.query.createNew)} 
+          onRequestClose={()=>router.push('/')} 
+          style={customStyles} 
+          className=''>
           <div>
-            Hey
+            <WriteBlogModal/>
           </div>
          </Modal>
       </div>
