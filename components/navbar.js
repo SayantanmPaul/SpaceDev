@@ -100,7 +100,7 @@ const Navbar = () => {
           style={customStyles} 
           className=''>
           <div>
-            <WriteBlogModal/>
+            {CurrentUser? <WriteBlogModal/>: <SignInModel closemodel={closeModel} />}
           </div>
          </Modal>
       </div>
