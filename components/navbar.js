@@ -24,6 +24,8 @@ const customStyles={
     transform: 'translate(-50%, -50%)',
     border:'none',
     padding: 0,
+    overflow: 'hidden',
+    borderRadius: '10px'
   },
   overlay:{
     backgroundColor: 'rgba(10,11,13, 0.65)',
@@ -99,7 +101,7 @@ const Navbar = () => {
           onRequestClose={()=>router.push('/')} 
           style={customStyles} 
           className=''>
-          <div>
+          <div className=''>
             {CurrentUser? <WriteBlogModal/>: <SignInModel closemodel={closeModel} />}
           </div>
          </Modal>

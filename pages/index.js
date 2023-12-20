@@ -23,7 +23,7 @@ export default function App() {
               <MainContent post={post} key={post.id}/>
             ))}
           </div>
-          <div className="lg:sticky relative lg:top-24">
+          <div className="lg:sticky relative lg:top-24 -z-10">
             <FilterContent />
             <div className=' w-full h-[1px] bg-slate-200 hidden lg:block'></div>
           </div>
