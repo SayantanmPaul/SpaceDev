@@ -24,7 +24,7 @@ const customStyles={
     transform: 'translate(-50%, -50%)',
     border:'none',
     padding: 0,
-    overflow: 'hidden',
+    overflow: 'scroll',
     borderRadius: '10px'
   },
   overlay:{
@@ -101,8 +101,9 @@ const Navbar = () => {
           onRequestClose={()=>router.push('/')} 
           style={customStyles} 
           className=''>
-          <div className=''>
-            {CurrentUser? <WriteBlogModal/>: <SignInModel closemodel={closeModel} />}
+          <div className=' '>
+            {CurrentUser? <WriteBlogModal/>: <div className=' p-10'>
+            <p>Error 404: Your aren’t signed in, kindly sign in first </p></div>}
           </div>
          </Modal>
       </div>
