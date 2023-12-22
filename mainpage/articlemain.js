@@ -20,8 +20,8 @@ const ArticleMainComp = ({post, author}) => {
 
   return (
     <div  className=' flex justify-center'>
-        <div style={{maxWidth: '680px'}} className=''>
-          <div className=' flex flex-col items-start gap-6'>
+        <div className=' lg:min-w-[680px] max-w-[680px]'>
+          <div className=' flex flex-col items-center gap-6'>
 
             {/* content heading */}
             {post?.data?.title?
@@ -53,7 +53,7 @@ const ArticleMainComp = ({post, author}) => {
 
             <div className=' w-full h-[1px] bg-slate-200 '></div>
             <div className=' flex flex-col gap-10 '>
-              <div className=' w-full h-auto'>
+              <div className=' lg:min-w-[680px] md:min-w-[680px] min-w-full h-auto'>
                 <Image 
                 src={post?.data?.bannerImage || `https://i.pinimg.com/originals/5d/35/e3/5d35e39988e3a183bdc3a9d2570d20a9.gif`} 
                 alt='authorImage' 

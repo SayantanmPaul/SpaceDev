@@ -47,7 +47,7 @@ return (
   <>
     <Link href={`/AuthorPost/${post.id}`} as={`/AuthorPost/${post.id}`}>
       <div className=' flex flex-row items-center'>
-      <div className=' flex flex-col lg:max-w-[475px] md:max-w-[475px] max-w-[240px] mx-auto'>
+      <div className=' flex flex-col lg:min-w-[475px] md:max-w-[475px] max-w-[280px] mx-auto w-full'>
         <div className=' flex flex-row items-center gap-2'>
           <div className=' w-[20px] h-[20px] rounded-full overflow-hidden'>
             <Image 
@@ -81,7 +81,7 @@ return (
           </div>
         </div>
       </div>
-      <div className=' flex items-center overflow-hidden  lg:rounded-md rounded'>
+      <div className=' max-w-32 lg:max-w-56 md:max-w-56 flex items-center overflow-hidden  lg:rounded-md rounded'>
         <Image 
             src={post.data.bannerImage}
             alt='main image'
