@@ -14,14 +14,12 @@ const tempData={
     maincontent: 'In this piece I examine both the flawed corporate structure of OpenAI, and the neglect of governance evolution during a year of immense change. Those things led to the chaos that is still unfolding around the firing of Sam Altman. I conclude that alternative governance structures aren’t the issue, as some may readily surmise. Nonetheless, how OpenAI’s particular structure was set up and managed left it vulnerable to calamity. Other alternative structures, such as those instituted by Anthropic, were more thoughtfully put together, better harmonize the interests of multiple stakeholders, and should be more resilient to slow divergences of goals or sudden organizational shocks'
 }
 
-
-
 const ArticleMainComp = ({post, author}) => {
 
   return (
     <div  className=' flex justify-center'>
         <div className=' lg:min-w-[680px] max-w-[680px]'>
-          <div className=' flex flex-col items-center gap-6'>
+          <div className=' flex flex-col items-start gap-6'>
 
             {/* content heading */}
             {post?.data?.title?
@@ -30,7 +28,7 @@ const ArticleMainComp = ({post, author}) => {
            
 
             {/* author details */}
-            <div className=' flex flex-row w-full justify-between items-center relative'>
+            <div className=' flex flex-row w-full justify-between items-center overflow-hidden relative'>
               <div className=' flex flex-row gap-3 items-center'>
                 <div className=' w-10 h-10 overflow-hidden rounded-full '>
                   <Image src={author?.data?.imgurl || `https://images.unsplash.com/photo-1618278942403-e973260cc425?q=80&w=3348&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`} alt='author' width={350} height={200}/>
@@ -51,6 +49,7 @@ const ArticleMainComp = ({post, author}) => {
               <button className=' py-1 px-3 absolute right-0 bg-indigo-400 hover:bg-indigo-500 text-white font-medium text-sm duration-300 rounded-full'>follow</button>
             </div>
 
+            {/* article banner image */}
             <div className=' w-full h-[1px] bg-slate-200 '></div>
             <div className=' flex flex-col gap-10 '>
               <div className=' lg:min-w-[680px] md:min-w-[680px] min-w-full h-auto'>
@@ -64,13 +63,12 @@ const ArticleMainComp = ({post, author}) => {
                 />
               </div>
 
+              {/* article main body and credit to the author */}
               <div>
                 <p className=' text-lg leading-relaxed font-newsletter'>{post?.data?.body}</p>
                 <br/>
                 <p className='  text-lg font-medium italic leading-relaxed font-newsletter'>Written by {author?.data?.name} .</p>
               </div>
-
-              
             </div>
          </div>
         </div>  

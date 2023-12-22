@@ -83,7 +83,7 @@ const Navbar = () => {
             <button onClick={()=> showModel(true)} className=' hidden lg:block md:block cursor-pointer hover:underline text-sm '>
               Sign in
             </button>
-            <div className=' absolute z-0'>
+            <div className=' absolute z-20'>
             {model && <SignInModel closemodel={closeModel}/>}   
             </div> 
             <button onClick={()=> showModel(true)} className=' bg-black text-white px-4 py-3 rounded-full text-sm duration-500 cursor-pointer'>

@@ -5,9 +5,18 @@ import ReadArticleNav from "../../mainpage/readArticleNav";
 import SimilarPostComp from "../../mainpage/similarpost";
 import { SpacedevContext } from "../../context/context";
 import { useRouter } from "next/router";
+import SignInModel from "../../components/signinmodel";
 
 export default function AuthorPostPage(){
-  const state=true
+
+  //sign in model
+  const [model, showModel]= useState(false)
+  const closeModel=()=> showModel(false)
+
+  //get user info
+  const {CurrentUser}=useContext(SpacedevContext)
+
+  const state=Boolean(CurrentUser)
 
   const {posts, users}=useContext(SpacedevContext)
   const router=useRouter();
@@ -31,12 +40,23 @@ export default function AuthorPostPage(){
   return(
     <div className=" py-2 lg:max-w-[1192px] md:max-w-[696px] max-w-[90%] mx-auto left-0 right-0 justify-center absolute">
       {/* if user havent log in show this section */}
-      {state==true && 
+      {state==false && 
       <div className=" gap-2 flex flex-col">
         <div className=" flex justify-end ">
           <div className=" flex flex-row gap-4">
-            <button className=" bg-black text-xs text-white px-2 py-1 rounded-full ">Sign up</button>
-            <button className=" text-xs hover:underline " >Sign in</button>
+            <button 
+              onClick={()=> showModel(true)} 
+              className=" bg-black text-xs text-white px-2 py-1 rounded-full ">
+                Sign up
+            </button>
+            <button 
+              onClick={()=> showModel(true)}
+              className=" text-xs hover:underline " >
+              Sign in
+            </button>
+            <div className=' fixed z-20'>
+            {model && <SignInModel closemodel={closeModel}/>}   
+            </div>
           </div>
         </div>
         <div className=' w-full h-[1px] bg-slate-200 block'></div>  
@@ -56,7 +76,8 @@ export default function AuthorPostPage(){
         <div className=' w-full h-[1px] bg-slate-200 my-4'></div>
         <SimilarPostComp/> 
         </div>
+        
       </div>
-    
+ 
   )
 }
