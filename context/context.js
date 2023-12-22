@@ -61,7 +61,7 @@ const DevProvider=({children})=>{
         await setDoc(doc(db, 'users', user.email),{
             email: user.email,
             name: user.displayName,
-            imageURl:user.photoURL,
+            imgurl:user.photoURL,
             followerCount: 0
         })
     }
