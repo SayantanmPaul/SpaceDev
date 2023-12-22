@@ -4,7 +4,19 @@ import Link from 'next/link';
 import SpaceDev  from '../Images/SpaceDev.svg'
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import {CiSearch} from 'react-icons/ci'
-const readArticleNav = () => {
+import { SpacedevContext } from '../context/context';
+import { useContext, useState } from 'react';
+import UserMenuDropdown from '../components/usermenudropdown';
+
+const ReadArticleNav = () => {
+    //get user info
+    const {CurrentUser}=useContext(SpacedevContext)
+    
+    const userImage=CurrentUser?.photoURL
+
+    //profile dropdown
+    const[Dropdown, setDropdown]=useState(false)
+
   return (
     <>
     <div className=' flex flex-row justify-between items-center '>
@@ -17,11 +29,24 @@ const readArticleNav = () => {
         <div className=' flex flex-col justify-center'>
           <CiSearch size={32} color='#757575' className=' lg:w-8 lg:h-8 w-7 h-7 cursor-pointer'/>
         </div>
+        {CurrentUser?
+        <button onClick={()=> setDropdown((prev)=>!prev)} className=''>
+          <Image 
+            src={userImage} 
+            alt='user' 
+            width={200} 
+            height={200}
+            className=' w-10 h-10 m-[2px] rounded-full border border-transparent hover:border-indigo-500 overflow-hidden'
+            />
+            {/* user menu dropdown */}
+            {Dropdown && (<UserMenuDropdown />)}
+        </button>:
         <HiOutlineUserCircle size={32} color='#757575' className='lg:w-8 lg:h-8 w-7 h-7 cursor-pointer'/>
+        }
     </div>
     </div>
     </>
   )
 }
 
-export default readArticleNav
+export default ReadArticleNav

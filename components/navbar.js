@@ -70,7 +70,7 @@ const Navbar = () => {
             </Link>
             <button onClick={()=> setDropdown((prev)=>!prev)} className='cursor-pointer'>
               <div className=' border hover:border-indigo-500 duration-300 p-[2px] rounded-full overflow-hidden'>
-              <Image src={userImage} alt='user' width={200} height={200} className=' object-fill rounded-full overflow-hidden lg:w-10 w-8 h-auto'/>
+              <Image src={userImage} alt='user' width={200} height={200} className=' object-fill rounded-full overflow-hidden w-10 h-auto'/>
               </div>
             </button>
             </div>
