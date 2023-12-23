@@ -42,7 +42,6 @@ const MainContent = ({post}) => {
     getAuthorData()
   }, [post.data.author])
 
-    
 return (
   <>
     <Link href={`/AuthorPost/${post.id}`} as={`/AuthorPost/${post.id}`}>

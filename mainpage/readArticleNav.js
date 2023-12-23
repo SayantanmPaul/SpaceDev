@@ -11,12 +11,15 @@ import UserMenuDropdown from '../components/usermenudropdown';
 const ReadArticleNav = () => {
     //get user info
     const {CurrentUser}=useContext(SpacedevContext)
-    
+
     const userImage=CurrentUser?.photoURL
 
     //profile dropdown
     const[Dropdown, setDropdown]=useState(false)
 
+    const NonUserAlert=()=>{
+      alert("kindly login first ")
+    }
   return (
     <>
     <div className=' flex flex-row justify-between items-center '>
@@ -41,7 +44,9 @@ const ReadArticleNav = () => {
             {/* user menu dropdown */}
             {Dropdown && (<UserMenuDropdown />)}
         </button>:
-        <HiOutlineUserCircle size={32} color='#757575' className='lg:w-8 lg:h-8 w-7 h-7 cursor-pointer'/>
+        <button onClick={NonUserAlert}>
+          <HiOutlineUserCircle  size={32} color='#757575' className='lg:w-8 lg:h-8 w-7 h-7 cursor-pointer'/>
+        </button>
         }
     </div>
     </div>

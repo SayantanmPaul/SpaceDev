@@ -3,6 +3,9 @@ import Image from 'next/image'
 import Author from '../Images/author.jpg';
 import titleImage from '../Images/C.jpg'
 import { FiClock } from "react-icons/fi";
+import { useState } from 'react';
+import { useContext } from 'react';
+import { SpacedevContext } from '../context/context';
 
 const tempData={
     author:'Duane Valz',
@@ -15,6 +18,14 @@ const tempData={
 }
 
 const ArticleMainComp = ({post, author}) => {
+  
+  const[isFollowing, SetIsFollowing]=useState(false)
+
+  const handleFollowing=()=>{
+    SetIsFollowing(!isFollowing);
+  }
+
+  const {CurrentUser}=useContext(SpacedevContext)
 
   return (
     <div  className=' flex justify-center'>
@@ -45,8 +56,12 @@ const ArticleMainComp = ({post, author}) => {
                   </div>
                 </div>
               </div>
-
-              <button className=' py-1 px-3 absolute right-0 bg-indigo-400 hover:bg-indigo-500 text-white font-medium text-sm duration-300 rounded-full'>follow</button>
+              {isFollowing && CurrentUser?
+              <button onClick={handleFollowing} className=' py-1 px-3 absolute right-0 bg-indigo-400 hover:bg-indigo-500 text-white font-medium text-sm duration-300 ease-in-out rounded-full'>following
+              </button>:
+              <button onClick={handleFollowing} className=' py-1 px-3 absolute right-0 bg-indigo-400 hover:bg-indigo-500 text-white font-medium text-sm duration-300 ease-in-out rounded-full'>follow</button>
+              }
+              
             </div>
 
             {/* article banner image */}
