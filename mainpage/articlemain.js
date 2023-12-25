@@ -5,7 +5,8 @@ import titleImage from '../Images/C.jpg'
 import { FiClock } from "react-icons/fi";
 import { useState } from 'react';
 import { useContext } from 'react';
-import { SpacedevContext } from '../context/context';
+import { SpacedevContext } from '../context/context'
+import Link from 'next/link';
 
 const tempData={
     author:'Duane Valz',
@@ -45,7 +46,9 @@ const ArticleMainComp = ({post, author}) => {
                   <Image src={author?.data?.imgurl || `https://images.unsplash.com/photo-1618278942403-e973260cc425?q=80&w=3348&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`} alt='author' width={350} height={200}/>
                 </div>
                 <div className=' '>
+                <Link href={`/UserProfile/${author?.data?.email}`}>
                   <p className=' text-base font-semibold cursor-pointer hover:underline'>{author?.data?.name ||tempData.author}</p>
+                  </Link>
                   <div className=' flex flex-row items-center gap-2 text-[#757575]'>
                     <p className=' text-sm'>{post?.data?.postLength || 10} min read</p>
                     <FiClock size={12}/>
@@ -84,7 +87,7 @@ const ArticleMainComp = ({post, author}) => {
                 <br/>
                 <p className='  text-lg font-medium italic leading-relaxed font-newsletter'>Written by {author?.data?.name} .</p>
               </div>
-            </div>
+            </div>  
          </div>
         </div>  
     </div>
