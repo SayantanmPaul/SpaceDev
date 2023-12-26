@@ -4,15 +4,31 @@ import { BsBookmarkPlus } from 'react-icons/bs';
 import { useContext } from 'react'
 import { SpacedevContext } from '../context/context'
 import Link from 'next/link';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const SimilarPostComp = () => {
     //get posts from the SpaceDev Context
     const { posts, users }= useContext(SpacedevContext)
+
+    const[randomPost, setRandomPost]=useState([])
+    
+    useEffect(() => {
+        // randomly stack the post
+        let randomPosts = [...posts]; 
+        for (let i = randomPosts.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [randomPosts[i], randomPosts[j]] = [randomPosts[j], randomPosts[i]];
+        }
+        // posts able to see max to only 4
+        setRandomPost(randomPosts.slice(0, 4));
+    }, [posts]);
+
     return (
         <div>
             <h2 className=' font-bold text-3xl pb-6'>You may also like</h2>
             <div className=' grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-4'>
-            {posts.map((post,index)=> {
+            {randomPost.map((post,index)=> {
             //getting individual author info
             const postUser = users.find(user => user.id === post.data?.author);
             
