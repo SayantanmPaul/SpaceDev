@@ -33,13 +33,13 @@ const ReadArticleNav = () => {
           <CiSearch size={32} color='#757575' className=' lg:w-8 lg:h-8 w-7 h-7 cursor-pointer'/>
         </div>
         {CurrentUser?
-        <button onClick={()=> setDropdown((prev)=>!prev)} className=''>
+        <button onClick={()=> setDropdown((prev)=>!prev)} className='m-1'>
           <Image 
             src={userImage} 
             alt='user' 
             width={200} 
             height={200}
-            className=' w-10 h-10 m-[2px] rounded-full border border-transparent hover:border-indigo-500 overflow-hidden'
+            className=' w-11 h-auto p-[2px] rounded-full border border-transparent hover:border-indigo-500 overflow-hidden'
             />
             {/* user menu dropdown */}
             {Dropdown && (<UserMenuDropdown />)}

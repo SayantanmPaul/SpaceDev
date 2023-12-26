@@ -38,7 +38,7 @@ export default function AuthorPostPage(){
 
 
   return(
-    <div className=" py-2 lg:max-w-[1192px] md:max-w-[696px] max-w-[90%] mx-auto left-0 right-0 justify-center absolute">
+    <div className=" py-3 lg:max-w-[1192px] md:max-w-[696px] max-w-[95%] mx-auto left-0 right-0 justify-center absolute">
       {/* if user havent log in show this section */}
       {state==false && 
       <div className=" gap-2 flex flex-col">
