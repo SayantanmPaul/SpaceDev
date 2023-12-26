@@ -35,14 +35,14 @@ const WriteBlogModal = () => {
       author: CurrentUser.email
     })
 
-    alert('Your blog post has been published!')
+    alert('Your blog post has been published!🎉')
 
     route.push('/') 
   }
 
   return (
     <div className=' lg:min-w-[1024px] md:min-w-[624px] min-w-[364px] max-h-[100vh] top-5 lg:p-10 md:px-8 py-8 px-4 gap-4 flex flex-col '>
-      <div className=' flex🎉 flex-row gap-2 items-center'>
+      <div className=' flex flex-row gap-2 items-center'>
 
         <h1 className=' lg:text-[44px] text-3xl font-newsletter text-indigo-700'>Thinking a new Blog ?</h1>
         <div className=' md:w-[52px] lg:w-[70px] w-[70px] '>
