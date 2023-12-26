@@ -37,8 +37,7 @@ const ArticleMainComp = ({post, author}) => {
             {post?.data?.title?
             <h1 className=' text-[32px] font-sans lg:text-[40px] leading-10 tracking-tight lg:leading-snug font-bold'>{post?.data?.title}
             </h1>:<h1 className='text-[32px] font-sans lg:text-[40px] leading-10 tracking-tight lg:leading-snug mx-auto animate-pulse bg-gray-100 rounded-md dark:bg-gray-300 lg:w-[680px] w-[380px] h-6'></h1>}
-           
-
+            
             {/* author details */}
             <div className=' flex flex-row w-full justify-between items-center overflow-hidden relative'>
               <div className=' flex flex-row gap-3 items-center'>
@@ -53,10 +52,9 @@ const ArticleMainComp = ({post, author}) => {
                     <p className=' text-sm'>{post?.data?.postLength || 10} min read</p>
                     <FiClock size={12}/>
                     <p>{new Date(post?.data?.datePosted || '').toLocaleString('en-US', {
-              day: 'numeric',
-              month: 'short'
-              })}
-            </p>
+                      day: 'numeric',
+                      month: 'short'
+                      })}</p>
                   </div>
                 </div>
               </div>

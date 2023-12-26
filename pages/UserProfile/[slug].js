@@ -4,6 +4,7 @@ const UserProfile = ({user}) => {
   return (
     <div>
       This is user Profile
+      incomplete
     </div>
   )
 }

@@ -74,7 +74,7 @@ export default function AuthorPostPage(){
       </div>
       <div className=" max-w-[680px] mx-auto">
         <div className=' w-full h-[1px] bg-slate-200 my-4'></div>
-        <SimilarPostComp/> 
+        <SimilarPostComp post={post}/> 
         </div>
         
       </div>
