@@ -52,10 +52,11 @@ const ArticleMainComp = ({post, author}) => {
                   <div className=' flex flex-row items-center gap-2 text-[#757575]'>
                     <p className=' text-sm'>{post?.data?.postLength || 10} min read</p>
                     <FiClock size={12}/>
-                    <p className=' text-sm'>{new Date().toLocaleString('en-US',{
-                      day: 'numeric',
-                      month: 'short'
-                    })}</p>
+                    <p>{new Date(post?.data?.datePosted || '').toLocaleString('en-US', {
+              day: 'numeric',
+              month: 'short'
+              })}
+            </p>
                   </div>
                 </div>
               </div>
