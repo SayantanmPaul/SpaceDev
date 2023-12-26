@@ -22,7 +22,7 @@ const SimilarPostComp = () => {
                 <div className=' flex flex-col lg:gap-4 gap-2 border rounded-md shadow-sm p-3 cursor-pointer' key={index}>
                     
                     <div className=' w-full h-auto rounded-md overflow-hidden '>
-                        <div className=' w-full max-h-[200px]'>
+                        <div className=' w-full h-[200px]'>
                         <Image src={post.data.bannerImage} width={500} height={200} alt='story image' priority/>
                         </div>
                     </div>
