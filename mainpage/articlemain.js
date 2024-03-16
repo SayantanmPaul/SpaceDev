@@ -29,7 +29,7 @@ const ArticleMainComp = ({post, author}) => {
   const {CurrentUser}=useContext(SpacedevContext)
 
   return (
-    <div  className=' flex justify-center'>
+    <div  className=' flex justify-center prose'>
         <div className=' lg:min-w-[680px] max-w-[680px]'>
           <div className=' flex flex-col items-start gap-6'>
 
@@ -82,12 +82,12 @@ const ArticleMainComp = ({post, author}) => {
 
               {/* article main body and credit to the author */}
               <div>
-                <p className=' text-lg leading-relaxed font-newsletter'>{post?.data?.body}</p>
+                <p className='prose text-lg leading-relaxed font-newsletter '>{post?.data?.body}</p>
                 <br/>
-                <p className='  text-lg font-medium italic leading-relaxed font-newsletter'>Written by {author?.data?.name} .</p>
+                <p className='prose text-lg font-medium italic leading-relaxed font-newsletter'>Written by {author?.data?.name} .</p>
               </div>
             </div>  
-         </div>
+        </div>
         </div>  
     </div>
   )

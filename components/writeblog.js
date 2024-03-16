@@ -5,8 +5,42 @@ import { SpacedevContext } from '../context/context'
 import { collection, addDoc } from 'firebase/firestore'
 import { db } from '../firebase'
 import { useRouter } from 'next/router'
+import Document from '@tiptap/extension-document'
+import Paragraph from '@tiptap/extension-paragraph'
+import Text from '@tiptap/extension-text'
+import { EditorContent, useEditor } from '@tiptap/react'
+import Bold from '@tiptap/extension-bold'
+import Italic from '@tiptap/extension-italic'
+import { GoBold } from "react-icons/go";
+import Code from '@tiptap/extension-code'
+import { FaCode } from "react-icons/fa6";
+import { FaItalic } from "react-icons/fa6";
+import Underline from '@tiptap/extension-underline'
+import { ImUnderline } from "react-icons/im";
+import BulletList from '@tiptap/extension-bullet-list'
+import { MdFormatListBulleted } from "react-icons/md";
+import ListItem from '@tiptap/extension-list-item'
 
 const WriteBlogModal = () => {
+
+  const editor = useEditor({
+    extensions: [
+      Document,
+      Paragraph,
+      Text,
+      Bold,
+      Italic,
+      Code,
+      Underline,
+      BulletList,
+      ListItem
+    ],
+    content: '<p>Start write your content here</p> ',
+    onUpdate: ({ editor }) => {
+      setBody(editor.getHTML())
+    },
+    rows: 10
+  })
 
   const {CurrentUser}=useContext(SpacedevContext)
 
@@ -38,6 +72,16 @@ const WriteBlogModal = () => {
     alert('Your blog post has been published!🎉')
 
     route.push('/') 
+  }
+
+  useEffect(() => {
+    if (editor && body !== editor.getHTML()) {
+      editor.commands.setContent(body)
+    }
+  }, [body, editor])
+
+  if (!editor) {
+    return null
   }
 
   return (
@@ -116,15 +160,94 @@ const WriteBlogModal = () => {
         </div>
         </div>
         </div>
-        {/* body
-        text editor section */}
+        {/* body text editor section */}
+
+        <div className=' border-[2px] border-slate-300 rounded-md'>
+        {/* bold text toggle */}
+        <div className=' p-1 flex flex-row gap-2 w-full'>
+        <button
+        onClick={() => {
+          if (editor.isActive('bold')) {
+            editor.chain().focus().unsetBold().run()
+          } else {
+            editor.chain().focus().toggleBold().run()
+          }
+        }}
+        className={editor.isActive('bold') ? 'is-active' : ''}
+        > 
+          <div className={`p-2 rounded-md ${editor.isActive('bold')? 'bg-slate-300 ': 'bg-slate-100'} duration-100 `}>
+            <GoBold size={18} />
+          </div>
+        </button>
+
+        {/* Italic text toggle */}
+        <button
+        onClick={() => {
+          if (editor.isActive('italic')) {
+            editor.chain().focus().unsetItalic().run()
+          } else {
+            editor.chain().focus().toggleItalic().run()
+          }
+        }}
+        className={editor.isActive('italic') ? 'is-active' : ''}
+        > 
+          <div className={`p-2 rounded-md ${editor.isActive('italic')? 'bg-slate-300 ': 'bg-slate-100'} duration-100 `}>
+            <FaItalic size={18} />
+          </div>
+        </button>
+        
+        {/* Underline text toggle */}
+        <button
+        onClick={() => {
+          if (editor.isActive('underline')) {
+            editor.chain().focus().unsetUnderline().run()
+          } else {
+            editor.chain().focus().toggleUnderline().run()
+          }
+        }}
+        className={editor.isActive('underline') ? 'is-active' : ''}
+        > 
+          <div className={`p-2 rounded-md ${editor.isActive('underline')? 'bg-slate-300 ': 'bg-slate-100'} duration-100 `}>
+            <ImUnderline size={18} />
+          </div>
+        </button>
+        
+        {/* code text toggle */}
+        <button
+        onClick={() => {
+          if (editor.isActive('code')) {
+            editor.chain().focus().unsetCode().run()
+          } else {
+            editor.chain().focus().toggleCode().run()
+          }
+        }}
+        className={editor.isActive('code') ? 'is-active' : ''}
+        > 
+          <div className={`p-2 rounded-md ${editor.isActive('code')? 'bg-slate-300 ': 'bg-slate-100'} duration-100 `}>
+            <FaCode size={18} />
+          </div>
+        </button>
+
+        {/* text bullet list toggle */}
+        <button
+        onClick={() => {
+          if (editor.isActive('bulletList')) {
+            editor.chain().focus().liftListItem().run()
+          } else {
+            editor.chain().focus().toggleBulletList().run()
+          }
+        }}
+        className={editor.isActive('bulletList') ? 'is-active' : ''}
+        > 
+          <div className={`p-2 rounded-md ${editor.isActive('bulletList')? 'bg-slate-300 ': 'bg-slate-100'} duration-100 `}>
+            <MdFormatListBulleted size={18} />
+          </div>
+            </button>
+            </div>
+        </div>
         <div className='w-full max-w-full py-4'>
-          <textarea className=' w-full border p-6 focus-visible:border-gray-500 font-newsletter border-gray-300 rounded -md' rows={10} 
-          placeholder='/ get started your blog content'
-          required
-          value={body}
-          onChange={event=>setBody(event.target.value)}
-          />
+          <EditorContent  editor={editor} className=' w-full border p-6 focus-visible:border-gray-500 font-newsletter border-gray-300 rounded -md'/>
+          
         </div>
 
         <div className=' py-4 '>
