@@ -1,41 +1,51 @@
 import React, { useContext, useEffect } from 'react'
-import SideImage from '../Images/C.jpg'
-import SpaceDev from '../Images/SpaceDev.svg'
+import SpaceImg from '../Images/10838001_19333449.jpg'
+import SpaceDev from '../Images/rocket.svg'
 import Image from 'next/image'
-import Traveller from '../Images/traveller.png'
-import { AiOutlineCloseCircle } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { SpacedevContext } from '../context/context'
 
-const SignInModel = ({closemodel}) => {
+const SignInModel = ({ closemodel }) => {
+    const { HandleUserAuth } = useContext(SpacedevContext)
 
-    const {HandleUserAuth}=useContext(SpacedevContext)
-    //scroll hidden
-    useEffect(()=>{
-        document.body.style.overflowY="hidden";
-        return()=>{
-            document.body.style.overflowY="auto"
-        }
-    },[])
-  return (
-    <div className=' fixed top-0 left-0 right-0 bottom-0 backdrop-blur-md flex items-center justify-center' onClick={closemodel}>
-        <div className=' bg-white p-4 rounded-lg flex flex-row items-center justify-center relative gap-4 w-auto'>
-            <div className=' rounded-md overflow-hidden hidden lg:block '>
-                <Image src={SideImage} width={600} height={300} alt='sideImage' className=' object-cover w-[400px] h-[560px]'/>
+    return (
+        <div className=' fixed top-0 left-0 right-0 bottom-0 backdrop-brightness-50 backdrop-blur flex items-center justify-center shadow-2xl'>
+            <div className='lg:rounded-3xl overflow-hidden flex lg:flex-row flex-col lg:h-[756px] h-full max-w-6xl w-full bg-[#FFE6C9] p-2'>
+                <Image
+                    src={SpaceImg}
+                    width={1400}
+                    height={800}
+                    alt='sideImage'
+                    priority
+                    className='lg:w-1/2 w-full h-full object-cover object-center lg:rounded-l-2xl rounded-t-2xl lg:rounded-tr-none'
+                />
+                <div className='w-full lg:h-full h-4/5 bg-white flex flex-col items-center justify-center overflow-hidden lg:rounded-r-2xl rounded-b-2xl lg:rounded-bl-none'>
+                    <div className='flex flex-col gap-4 max-w-md mb-2'>
+                        <Image
+                            src={SpaceDev}
+                            alt='logo'
+                            width={200}
+                            height={200}
+                            className='w-16 h-15'
+                        />
+                        <div className='flex flex-col space-y-2 text-[#525252]'>
+                            <p className='lg:text-3xl text-[30px] font-bold font-newsletter'>Login to your Account</p>
+                            <p className='font-semibold text-sm font-newsletter'>Share your thoughts everyday . . . </p>
+                        </div>
+                        <button onClick={HandleUserAuth} className=' border bg-[#FFE6C9] hover:bg-[#fbdcb9] duration-300 text-[#828282] font-medium rounded-lg p-2 text-sm w-full lg:min-w-[440px] flex flex-row items-center justify-center gap-2'>
+                            <FcGoogle size={22} />
+                            Sign in with Google
+                        </button>
+                        {/* <p className='text-xs font-newsletter text-[#cbcaca] text-center'>------------- or Sign in with Email ------------- </p> */}
+                        <button onClick={closemodel} className=' border border-[#FFE6C9] hover:bg-[#fff0df] duration-300 text-[#b4a5a5] hover:text-[#525252] font-semibold font-newsletter rounded-lg p-2 text-sm min-w-[240px] lg:min-w-[440px] flex flex-row items-center justify-center gap-2'>
+                            {/* <FcGoogle size={22} /> */}
+                            Cancel
+                        </button>
+                    </div>
+                </div>
             </div>
-            <button className=' absolute right-0 top-0 p-2' onClick={closemodel}><AiOutlineCloseCircle size={22} className=' text-slate-400 p02'/></button>
-            <div className=' flex flex-col items-center justify-between px-4 lg:gap-2 gap-6'>
-                <Image src={SpaceDev} alt='logo' width={160} height={140} className=''/>
-                <p className=' font-newsletter'>A space for devlopers and inspired engineers</p>
-                <br className=' hidden lg:block'/>
-                <br className=' hidden lg:block'/>
-                <button onClick={HandleUserAuth} className=' bg-slate-100 hover:bg-slate-200 duration-300 text-black font-medium rounded-lg p-2 text-sm min-w-[240px] lg:min-w-[340px] flex flex-row items-center justify-center gap-2'><FcGoogle size={22}/> Sign in with Google </button>  
-            </div>  
-        
         </div>
-        <Image src={Traveller} alt='travveler' width={400} height={400} className=' absolute bottom-0 -right-60 w-[800px]'/>
-    </div>
-  )
+    )
 }
 
 export default SignInModel

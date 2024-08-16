@@ -34,7 +34,7 @@ const SimilarPostComp = () => {
             
             return(
                 <>
-                <Link href={`/AuthorPost/${post.id}`} as={`/AuthorPost/${post.id}`}>
+                <Link href={`/post/${post.id}`} as={`/post/${post.id}`}>
                 <div className=' flex flex-col lg:gap-4 gap-2 border rounded-md shadow-sm p-3 cursor-pointer' key={index}>
                     
                     <div className=' w-full h-auto rounded-md overflow-hidden '>
