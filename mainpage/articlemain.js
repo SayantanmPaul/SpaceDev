@@ -1,7 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import Author from '../Images/author.jpg';
-import titleImage from '../Images/C.jpg'
 import { FiClock } from "react-icons/fi";
 import { useState } from 'react';
 import { useContext } from 'react';
