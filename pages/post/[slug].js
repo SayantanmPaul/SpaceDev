@@ -36,7 +36,6 @@ export default function AuthorPostPage() {
 
   }, [post, posts, users, router.query.slug])
 
-
   return (
     <div className=" py-3 lg:max-w-6xl md:max-w-3xl max-w-full mx-auto px-2 left-0 right-0 justify-center absolute">
       {/* if user havent log in show this section */}
