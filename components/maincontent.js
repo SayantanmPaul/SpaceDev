@@ -29,10 +29,16 @@ const MainContent = ({ post }) => {
     if (words.length > maxLength) {
       text = words.slice(0, maxLength).join(' ') + '...';
     }
-    return <p className='hover:underline underline-offset-2 ' style={{ fontFamily: 'sans-serif', fontWeight: 'bold', fontSize: fontSize }}>{text}</p>
+    return <p className='hover:underline underline-offset-2' style={{ fontFamily: 'sans-serif', fontWeight: 'bold', fontSize: fontSize }}>{text}</p>
   }
+  function SubMaxText({ text, maxLength }) {
+    const words = text.split(' ');
 
-  //get the user data via email id and access the specific blog via the email id and set to authorData
+    if (words.length > maxLength) {
+      text = words.slice(0, maxLength).join(' ') + '...';
+    }
+    return <p className='text-slate-500 hidden lg:block md:block line-clamp-3 text-wrap ' style={{ fontFamily: 'sans-serif' }}>{text}</p>
+  }
 
   useEffect(() => {
     const getAuthorData = async () => {
@@ -49,10 +55,10 @@ const MainContent = ({ post }) => {
   }
   return (
     <>
-      <div className=' flex flex-row items-center group'>
-        <div className=' flex flex-col lg:min-w-[475px] md:max-w-[475px] max-w-[280px] mx-auto w-full'>
+      <div className=' flex flex-row items-center group w-full'>
+        <div className=' flex flex-col w-full'>
           <div className=' flex flex-row items-center gap-2'>
-            <div className=' w-[20px] h-[20px] rounded-full overflow-hidden'>
+            <div className=' w-5 h-5 rounded-full overflow-hidden'>
               <Image
                 src={authorData?.imgurl || 'https://images.unsplash.com/photo-1545472956-3ebf777846cc?q=80&w=3400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}
                 alt={authorData?.name || "userimage"}
@@ -61,14 +67,17 @@ const MainContent = ({ post }) => {
               />
             </div>
             <div>
-              <p className=' text-[12px] lg:text-[14px] font-semibold'>{authorData?.name}</p>
+              <p className=' text-sm lg:text-[14px] font-semibold'>{authorData?.name}</p>
             </div>
           </div>
           <div className='pr-4'>
             <Link href={`/post/${post.id}`}>
               <MaxText text={post.data.title} maxLength={15} />
             </Link>
-            <p className=' font-sans text-[16px] text-slate-500 hidden lg:block md:block line-clamp-2 text-wrap'>{post.data.brief}</p>
+            <SubMaxText text={post.data.brief} maxLength={48}/>
+            {/* <p className=' '>
+              {post.data.brief}
+            </p> */}
           </div>
           <div className=' flex flex-row justify-between items-center'>
             <div className=' flex flex-row items-center text-[#757575] lg:text-[14px] text-xs lg:gap-2 gap-1 py-1'>
@@ -86,14 +95,14 @@ const MainContent = ({ post }) => {
             </div>
           </div>
         </div>
-        <div className=' max-w-32 lg:max-w-56 md:max-w-56 flex items-center overflow-hidden  lg:rounded-md rounded'>
+        <div className=' flex items-center overflow-hidden lg:rounded-md rounded w-full lg:max-w-36 lg:h-36 max-w-32 h-32'>
           <Image
             src={post.data.bannerImage}
             alt='main image'
             width={300}
             height={200}
             priority
-            className=' object-cover w-44 lg:h-36 md:h-36 h-28 duration-500 group-hover:scale-110'
+            className=' object-cover duration-500 group-hover:scale-110 w-full h-full'
           />
         </div>
       </div>

@@ -17,7 +17,7 @@ const ReactionsComp = ({post}) => {
 
   return (  
     <div className=''>
-      <div className=' flex flex-row lg:justify-evenly justify-between px-6 lg:px-0 sticky bottom-0 items-center '>
+      <div className=' flex flex-row lg:justify-between justify-between px-6 lg:px-0 sticky bottom-0 items-center '>
         
         <div onClick={handleClicked} className=' flex flex-row items-center gap-2 lg:gap-0 lg:ml-4'>
         {liked ? 

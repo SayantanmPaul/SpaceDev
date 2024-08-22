@@ -7,7 +7,8 @@ const SpacedevContext=createContext()
 
 const DevProvider=({children})=>{
     const [users, setUsers]= useState([])
-    const [posts, setPosts]= useState([])
+    const [posts, setPosts] = useState([])
+    const [category, setCategory]= useState([])
 
     const [CurrentUser,setCurrentUser]=useState(null)
     //get user data from this useEffect
@@ -33,7 +34,6 @@ const DevProvider=({children})=>{
     useEffect(()=>{
         const getPosts=async()=>{
             const Data= await getDocs(collection(db, 'blogs'))
-    
             setPosts(
                 Data.docs.map(doc=> {
                     return{
@@ -54,6 +54,24 @@ const DevProvider=({children})=>{
             )
         }
         getPosts()
+    }, [])
+
+    //firestore blogs categories
+    useEffect(() => {
+        const getCategory = async () => {
+            const Data = await getDocs(collection(db, 'category'))
+            setCategory(
+                Data.docs.map(doc => {
+                    return {
+                        id: doc.id,
+                        data: {
+                            ...doc.data()
+                        }
+                    }
+                })
+            )
+        }
+        getCategory()
     }, [])
 
     //fireStore userData Update
@@ -90,7 +108,7 @@ const DevProvider=({children})=>{
     }
 
     return(
-        <SpacedevContext.Provider value={{posts, users, HandleUserAuth, HandleUserLogout, CurrentUser}}>
+        <SpacedevContext.Provider value={{posts, users, category ,HandleUserAuth, HandleUserLogout, CurrentUser}}>
             {children}
         </SpacedevContext.Provider>
     )
