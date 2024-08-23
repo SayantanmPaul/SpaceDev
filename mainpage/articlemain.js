@@ -35,7 +35,7 @@ const ArticleMainComp = ({ post, author }) => {
   return (
     <div className=' flex flex-col items-center justify-center prose w-full'>
       <div className='w-full flex flex-col items-end '>
-        <div className=' flex flex-col items-center gap-6'>
+        <div className=' flex flex-col items-start gap-6'>
           {/* content heading */}
           {post?.data?.title ?
             <h1 className=' text-[32px] font-sans lg:text-[40px] leading-10 tracking-tight lg:leading-snug font-bold'>{post?.data?.title}

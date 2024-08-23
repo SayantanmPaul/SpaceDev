@@ -81,7 +81,9 @@ const AddNewBlogModel = ({ closemodel }) => {
                 postLength: Number(data.minutesToRead),
                 body: data.content,
                 datePosted: new Date().toISOString(),
-                author: CurrentUser.email
+                author: CurrentUser.email,
+                likes: 0,
+                likedBy: []
             });
             alert('Your blog post has been published!🎉')
             closemodel();

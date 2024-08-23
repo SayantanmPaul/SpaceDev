@@ -19,7 +19,7 @@ export default function App() {
 
   return (
     <>
-      <div className=' flex flex-col absolute left-0 right-0 gap-3 lg:max-w-[1192px] md:max-w-[696px] max-w-[95%] m-auto justify-center'>
+      <div className=' flex flex-col absolute left-0 right-0 gap-3 lg:max-w-6xl md:max-w-2xl max-w-[95%] m-auto justify-center'>
         <div className='lg:py-3 py-4 top-0 sticky bg-white z-10'>
           <Navbar />
         </div>

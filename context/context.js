@@ -1,24 +1,24 @@
-import { createContext, useEffect, useState} from "react";
-import { collection, setDoc,getDocs, doc } from "firebase/firestore";
-import { db, provider,auth } from "../firebase";
+import { createContext, useEffect, useState } from "react";
+import { collection, setDoc, getDocs, doc } from "firebase/firestore";
+import { db, provider, auth } from "../firebase";
 import { signInWithPopup, signOut } from "firebase/auth";
 
-const SpacedevContext=createContext()
+const SpacedevContext = createContext()
 
-const DevProvider=({children})=>{
-    const [users, setUsers]= useState([])
+const DevProvider = ({ children }) => {
+    const [users, setUsers] = useState([])
     const [posts, setPosts] = useState([])
-    const [category, setCategory]= useState([])
+    const [category, setCategory] = useState([])
 
-    const [CurrentUser,setCurrentUser]=useState(null)
+    const [CurrentUser, setCurrentUser] = useState(null)
     //get user data from this useEffect
-    useEffect(()=>{
-        const getUser=async()=>{
-            const Data= await getDocs(collection(db, 'users'))
-            
+    useEffect(() => {
+        const getUser = async () => {
+            const Data = await getDocs(collection(db, 'users'))
+
             setUsers(
-                Data.docs.map(doc=> {
-                    return{
+                Data.docs.map(doc => {
+                    return {
                         id: doc.id,
                         data: {
                             ...doc.data()
@@ -31,12 +31,12 @@ const DevProvider=({children})=>{
     }, [])
 
     //get blog Post data from this useEffect
-    useEffect(()=>{
-        const getPosts=async()=>{
-            const Data= await getDocs(collection(db, 'blogs'))
+    useEffect(() => {
+        const getPosts = async () => {
+            const Data = await getDocs(collection(db, 'blogs'))
             setPosts(
-                Data.docs.map(doc=> {
-                    return{
+                Data.docs.map(doc => {
+                    return {
                         id: doc.id,
                         data: {
                             body: doc.data().body,
@@ -47,7 +47,8 @@ const DevProvider=({children})=>{
                             datePosted: doc.data().datePosted,
                             title: doc.data().title,
                             author: doc.data().author,
-                            likes: doc.data().likeCount,
+                            likes: doc.data().likes,
+                            likedBy: doc.data().likedBy
                         }
                     }
                 })
@@ -75,29 +76,29 @@ const DevProvider=({children})=>{
     }, [])
 
     //fireStore userData Update
-    const AddAuthortoFireStore=async user=>{
-        await setDoc(doc(db, 'users', user.email),{
+    const AddAuthortoFireStore = async user => {
+        await setDoc(doc(db, 'users', user.email), {
             email: user.email,
             name: user.displayName,
-            imgurl:user.photoURL,
-            followerCount: 0
+            imgurl: user.photoURL,
+            followerCount: 0,
         })
     }
 
     //firebase authentication
-    const HandleUserAuth= async()=>{
+    const HandleUserAuth = async () => {
         try {
-            const userData=await signInWithPopup(auth,provider)
-            const user=userData.user
+            const userData = await signInWithPopup(auth, provider)
+            const user = userData.user
             setCurrentUser(user)
             AddAuthortoFireStore(user)
         } catch (error) {
             alert("signin initiated but cancelled by the user");
         }
-        
+
     }
     //firebase logout
-    const HandleUserLogout=async()=>{
+    const HandleUserLogout = async () => {
         try {
             await signOut(auth)
             setCurrentUser(null)
@@ -107,8 +108,8 @@ const DevProvider=({children})=>{
         }
     }
 
-    return(
-        <SpacedevContext.Provider value={{posts, users, category ,HandleUserAuth, HandleUserLogout, CurrentUser}}>
+    return (
+        <SpacedevContext.Provider value={{ posts, users, category, HandleUserAuth, HandleUserLogout, CurrentUser }}>
             {children}
         </SpacedevContext.Provider>
     )
@@ -116,4 +117,4 @@ const DevProvider=({children})=>{
 
 
 
-export  {SpacedevContext, DevProvider}
+export { SpacedevContext, DevProvider }

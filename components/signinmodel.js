@@ -19,7 +19,7 @@ const SignInModel = ({ closemodel }) => {
 
     return (
         <div className=' fixed top-0 left-0 right-0 bottom-0 backdrop-brightness-50 backdrop-blur flex items-center justify-center shadow-2xl z-20'>
-            <div className={`lg:rounded-3xl overflow-hidden flex lg:flex-row flex-col lg:h-[756px] h-full max-w-6xl w-full bg-[#FFE6C9] p-2 modal-container ${isClosing ? 'animate-fade-slideout' : 'animate-fade-slideup'}`}>
+            <div className={`lg:rounded-3xl overflow-hidden flex lg:flex-row flex-col lg:h-[756px] h-full max-w-6xl w-full bg-[#FFE6C9] lg:p-2 modal-container ${isClosing ? 'animate-fade-slideout' : 'animate-fade-slideup'}`}>
                 <Image
                     src={SpaceImg}
                     width={500}
@@ -27,7 +27,7 @@ const SignInModel = ({ closemodel }) => {
                     alt='sideImage'
                     priority
                     placeholder='blur'
-                    className='lg:w-3/5 w-full h-full object-cover object-center lg:rounded-l-2xl rounded-t-2xl lg:rounded-tr-none'
+                    className='lg:w-3/5 w-full h-full object-cover object-center lg:rounded-l-2xl  lg:rounded-tr-none'
                 />
                 <div className='w-full lg:h-full h-4/5 bg-white flex flex-col items-center justify-center overflow-hidden lg:rounded-r-2xl rounded-b-2xl lg:rounded-bl-none'>
                     <div className='flex flex-col gap-4 max-w-md mb-2'>
